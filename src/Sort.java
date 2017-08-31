@@ -42,13 +42,22 @@ public class Sort {
 		List<Integer> temp = new ArrayList<Integer>();
 		temp.addAll(source);
 		if (displayStep==true) System.out.println(temp.toString());
-		
-		for(int i=0; i<temp.size(); i++) {
-			
+		int atemp;
+		int insertionIndex = 0;
+		for(int i=1; i<temp.size(); i++) {
+			atemp = temp.get(i);
+			insertionIndex = i;
+			for(int j=i; j>0; j--) {
+				if(atemp<temp.get(j-1)) {
+					insertionIndex = j-1;
+					temp.set(j, temp.get(j-1));
+				} else {
+					break;
+				}
+			}
+			temp.set(insertionIndex, atemp);
+			if (displayStep==true) System.out.println(i + ": " + temp.toString());
 		}
-		
-		
-		
 		return temp;
 	}
 	public static void main(String[] args) {
@@ -64,20 +73,19 @@ public class Sort {
 		source.add(15);
 		source.add(2);
 		
+		boolean debug = false;
 		System.out.println("==================");
 		System.out.println("INPUT SOURCE");
 		System.out.println(source.toString());
+		System.out.println("==================");
 		
-		System.out.println("\n\n");
-		System.out.println("1. remove duplicate items: \n" + removeDuplicateItems(source).toString());
+		System.out.println("1. Remove duplicate items: \n" + removeDuplicateItems(source).toString() + "\n");
 		
-		System.out.println("\n\n");
-		System.out.println("2. bubble sort:\n" + bubbleSort(source, false).toString());
+		System.out.println("2. Bubble sort:");
+		System.out.println(bubbleSort(source, debug).toString() + "\n");
 		
-		
-		
-		System.out.println("\n\nINPUT SOURCE");
-		System.out.println(source.toString());
+		System.out.println("3. Insertion sort:");
+		System.out.println(insertionSort(source, debug).toString() + "\n");
 	}
 	
 }
