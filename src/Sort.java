@@ -60,6 +60,32 @@ public class Sort {
 		}
 		return temp;
 	}
+	
+	public static List selectionSort(List source, boolean displayStep) {
+		List<Integer> temp = new ArrayList<Integer>();
+		temp.addAll(source);
+		int minPosition;
+		if (displayStep==true) System.out.println(temp.toString());
+		for(int i=0; i<temp.size(); i++) {
+			int aTemp = temp.get(i);
+			minPosition = i;
+			for(int j=i+1; j<temp.size();j++) {
+				if(aTemp>temp.get(j)) {
+					aTemp = temp.get(j);
+					minPosition = j;
+				}
+			}
+			temp.set(minPosition, temp.get(i));
+			temp.set(i, aTemp);
+			
+			
+			if (displayStep==true) System.out.println(i + ": " + temp.toString());
+		}
+		return temp;
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		List<Integer> source = new ArrayList<Integer>();
 		source.add(3);
@@ -86,6 +112,17 @@ public class Sort {
 		
 		System.out.println("3. Insertion sort:");
 		System.out.println(insertionSort(source, debug).toString() + "\n");
+		
+		System.out.println("4. Selection sort:");
+		System.out.println(selectionSort(source, debug).toString() + "\n");
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 }
